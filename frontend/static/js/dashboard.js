@@ -6,41 +6,45 @@
  */
 async function importarMultiplesFragmentos(urlArchivo, selectores, idDestino) {
     const contenedorDestino = document.getElementById(idDestino);
-    
+ 
+    if (!contenedorDestino) return; // evita crash si el contenedor no existe
+ 
     try {
         const response = await fetch(urlArchivo);
+ 
+        if (!response.ok) {
+            console.warn(`Archivo no encontrado: ${urlArchivo}`);
+            return;
+        }
+ 
         const htmlText = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
-
-        // Limpiamos el contenedor antes de inyectar
+ 
         contenedorDestino.innerHTML = '';
-
-        // Recorremos cada selector que pediste
+ 
         selectores.forEach(selector => {
             const elementoOrigen = doc.querySelector(selector);
             if (elementoOrigen) {
-                // Clonamos y añadimos al contenedor
                 const clon = elementoOrigen.cloneNode(true);
                 contenedorDestino.appendChild(clon);
             } else {
                 console.warn(`Selector "${selector}" no encontrado en ${urlArchivo}`);
             }
         });
-
+ 
     } catch (error) {
         console.error(`Error cargando fragmentos de ${urlArchivo}:`, error);
         contenedorDestino.innerHTML = '<p class="text-danger">Error de carga</p>';
     }
 }
-
-// --- ASÍ ES COMO DEBES LLAMARLAS AHORA ---
-
-// Carta 1: Recompensa (Traemos el avatar y el trofeo destacado)
-importarMultiplesFragmentos('../../templates/user/profile.html', ['.avatar', '.insignia','.name-insignia','.link'], 'preview-profile');
-
-// Carta 2: Actividad (Traemos la racha de contribución y la lista de actividad)
+ 
+// Carta 1: Perfil (avatar y trofeo destacado)
+importarMultiplesFragmentos('../../templates/user/profile.html', ['.avatar', '.insignia', '.name-insignia', '.link'], 'preview-profile');
+ 
+// Carta 2: Actividad (racha y lista de actividad)
 importarMultiplesFragmentos('../../templates/user/profile.html', ['.stats', '.activity'], 'preview-activity');
-
-// Carta 3: Continuar (Traemos el nombre del usuario y la lista de cursos)
-importarMultiplesFragmentos('../../templates/user/courser.html', ['.cursos','.module','.btn-continue'], 'preview-courses');
+ 
+// Carta 3: Cursos — corregido: era "courser.html", el archivo real es "courses.html"
+importarMultiplesFragmentos('../../templates/user/courses.html', ['.cursos', '.module', '.btn-continue'], 'preview-courses');
+ 
