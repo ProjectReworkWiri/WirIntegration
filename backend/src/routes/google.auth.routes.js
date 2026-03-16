@@ -10,7 +10,7 @@ router.get("/google",
 );
 
 router.get("/google/callback",
-  passport.authenticate("google", { failureRedirect: `${FRONTEND_URL}/frontend/templates/auth/index.html` }),
+  passport.authenticate("google", { failureRedirect: `${FRONTEND_URL}/templates/auth/index.html` }),
   async (req, res) => {
 
     try {
@@ -26,11 +26,11 @@ router.get("/google/callback",
         maxAge: 1000 * 60 * 60 * 24 * 7
       });
 
-      res.redirect(`${FRONTEND_URL}/frontend/templates/dashboard/dashboard.html`);
+      res.redirect(`${FRONTEND_URL}/templates/dashboard/dashboard.html`);
       
     } catch (error) {
       console.error("Error en Google Callback:", error);
-      res.redirect(`${FRONTEND_URL}/frontend/templates/auth/index.html?error=google_auth_failed`);
+      res.redirect(`${FRONTEND_URL}/templates/auth/index.html?error=google_auth_failed`);
     }
 
   }
