@@ -87,7 +87,7 @@ const confirmEmail = async (req, res) => {
         
         if (isVerified) {
             // if all it's okey redirect to login
-            return res.redirect(`${FRONTEND_URL}/frontend/templates/auth/index.html`);
+            return res.redirect(`${FRONTEND_URL}/templates/auth/index.html`);
         }
         
         // If the token don't exists or was used

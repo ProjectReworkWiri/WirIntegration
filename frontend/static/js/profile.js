@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             if (res.status === 401) {
                 console.warn("Expired sesion redirect to login.");
-                window.location.href = "/frontend/templates/auth/index.html";
+                window.location.href = "/templates/auth/index.html";
                 return;
             }
 

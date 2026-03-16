@@ -81,7 +81,7 @@ function iniciarTemporizadorRacha() {
                 credentials: 'include'
             });
         } catch (error) {
-            console.error("❌ Network error:", error);
+            console.error("Network error:", error);
         }
     }, 120000); 
 }
