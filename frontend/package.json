@@ -4,7 +4,7 @@
   "description": "Frontend de Zenith",
   "main": "index.html",
   "scripts": {
-    "start": "npx serve -s ."
+    "start": "npx serve ."
   },
   "dependencies": {
     "serve": "^14.2.0"
