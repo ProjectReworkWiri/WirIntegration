@@ -1,5 +1,3 @@
-const port = "https://wirintegration-production.up.railway.app"
-
 async function renderBadges(userId) {
     if (!userId) {
         console.error("renderBadges: userId its not defined");
