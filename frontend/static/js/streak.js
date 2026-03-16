@@ -115,7 +115,7 @@ async function initDashboard() {
         });
 
         if (response.status === 401) {
-            window.location.href = "../../templates/auth/index.html";
+            window.location.href = "/templates/auth/index.html";
             return;
         }
         if (!response.ok) {

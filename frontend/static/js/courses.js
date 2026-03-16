@@ -26,7 +26,7 @@ async function loadCourses(){
         ]);
  
         if(myRes.status === 401){
-            window.location.href = "../../templates/auth/index.html";
+            window.location.href = "/templates/auth/index.html";
             return;
         }
  
@@ -659,7 +659,7 @@ async function saveScore({score, gameId, courseId}) {
             if(data.badge && data.badge.success) {
                 // Obtener info de la insignia para mostrarla en el toast
                 try {
-                    const badgeRes = await fetch("http://127.0.0.1:4000/api/badges/user/me", {
+                    const badgeRes = await fetch(`${port}/api/badges/user/me`, {
                         credentials: "include"
                     });
                     if(badgeRes.ok) {
@@ -674,7 +674,7 @@ async function saveScore({score, gameId, courseId}) {
             } else if(score >= 10) {
                 // Score suficiente: intentar mostrar la insignia aunque ya existiera
                 try {
-                    const badgeRes = await fetch("http://127.0.0.1:4000/api/badges/user/me", {
+                    const badgeRes = await fetch(`${port}/api/badges/user/me`, {
                         credentials: "include"
                     });
                     if(badgeRes.ok) {

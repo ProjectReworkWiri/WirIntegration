@@ -177,13 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
         credentials: "include"
     }).then(res => {
         if (res.status === 401) {
-            window.location.href = "../../templates/auth/index.html";
+            window.location.href = "/templates/auth/index.html";
             return;
         }
         loadDashboardProfile();
         loadDashboardStreak();
         loadDashboardCourses();
     }).catch(() => {
-        window.location.href = "../../templates/auth/index.html";
+        window.location.href = "/templates/auth/index.html";
     });
 });

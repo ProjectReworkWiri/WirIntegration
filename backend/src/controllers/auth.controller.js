@@ -51,11 +51,11 @@ const login = async (req, res) => {
 
         if (result.match) {
             res.cookie("user_session", result.userFound.id, {
-                secure: process.env.NODE_ENV === "production", 
-                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+                secure: true, 
+                sameSite: "none",
                 sameSite: "lax",
                 path: "/",
-                maxAge: 24 * 60 * 60 * 1000,
+                maxAge: 24 * 60 * 60 * 1000
             });
 
             // Notify to n8n for send a confirmation email of login

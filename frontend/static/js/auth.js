@@ -135,7 +135,7 @@ if (loginForm) {
                 displayMessage("Login successful!", "success");
  
                 setTimeout(() => {
-                    window.location.href = "../../templates/dashboard/dashboard.html";
+                    window.location.href = "/templates/dashboard/dashboard.html";
                 }, 1500);
  
             } else {
@@ -188,7 +188,7 @@ if (registerForm) {
                 registerForm.reset();
  
                 setTimeout(() => {
-                    window.location.href = "../../templates/auth/index.html";
+                    window.location.href = "/templates/auth/index.html";
                 }, 3500);
  
             } else {
