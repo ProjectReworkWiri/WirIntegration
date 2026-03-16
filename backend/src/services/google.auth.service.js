@@ -22,8 +22,8 @@ export const findOrCreateGoogleUser = async (profile) => {
 
     // 2. Create user
     const newUser = await pool.query(
-      `INSERT INTO users(full_name,email,google_id,auth_provider)
-       VALUES($1,$2,$3,'google')
+      `INSERT INTO users(full_name,email,google_id,auth_provider,is_verified)
+       VALUES($1,$2,$3,'google','true')
        RETURNING *`,
       [name,email,googleId]
     );
@@ -56,7 +56,7 @@ export const findOrCreateGoogleUser = async (profile) => {
 
       await pool.query(
         `UPDATE users
-         SET google_id=$1
+         SET google_id=$1, is_verified=true
          WHERE id=$2`,
         [googleId,user.id]
       );
