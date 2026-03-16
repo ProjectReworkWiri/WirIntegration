@@ -1,30 +1,16 @@
-<<<<<<< HEAD
-import { btnCreate, modalCourses, coverCourseIn, previewImg, placeHolder, courseTitle, courseDesc, moduleCont, btnModule, coursePublic, cateSelect, gameSelect, submitBtn, modalTitle, workS, desc, title, bad, cover, container, closeBtn} from "./elements.js";
-
-const port = "http://127.0.0.1:4000/api/courses";
-
-=======
 import { btnCreate, modalCourses, coverCourseIn, previewImg, placeHolder, courseTitle, courseDesc, moduleCont, btnModule, coursePublic, cateSelect, gameSelect, submitBtn, modalTitle, workS, title, bad, cover, container, closeBtn, iframe, status } from "./elements.js";
  
 const port = "https://wirintegration-production.up.railway.app/api/courses";
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 //-----------------form logic----------------------------//
  
 let courseData = null;
 let currentCourse = null;
-<<<<<<< HEAD
-
-let myModules = [];
-let publicCourses = [];
-let enrolled = [];
-=======
  
 let myModules = [];
 let publicCourses = [];
 let enrolled = [];
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 
 function clearCards() {
     document.querySelectorAll(".floating-card").forEach(c => c.remove());
@@ -49,11 +35,7 @@ async function loadCourses(){
             const data = await myRes.json();
             const created = data.data.created || [];
             enrolled = data.data.enrolled || [];
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
             courseData = created[0] || null;
  
             if(courseData){
@@ -75,13 +57,6 @@ async function loadCourses(){
         }
  
 
-<<<<<<< HEAD
-        const allCourses = [...(courseData ? [courseData] : []), ...enrolled];
-        allCourses.forEach((course, index) => renderCards(course, index));
-
-        workSpace();
-
-=======
         clearCards();
  
         const allCourses = [...(courseData ? [courseData] : []), ...enrolled];
@@ -89,7 +64,6 @@ async function loadCourses(){
  
         workSpace();
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     } catch (error) {
     
         console.error("Connection error (Server might be down):", error);
@@ -97,39 +71,16 @@ async function loadCourses(){
     };
  
 }
-<<<<<<< HEAD
-
-window.joinCourse = async (courseId) => {
-    try {
-
-=======
  
 window.joinCourse = async (courseId) => {
     try {
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         const res = await fetch(`${port}/join`, {
             method: "POST",
             credentials: "include",
             headers: { "Accept": "application/json", "Content-Type": "application/json" },
             body: JSON.stringify({ courseId })
         });
-<<<<<<< HEAD
-
-        if(res.ok){
-
-            document.getElementById("search-dropdown")?.remove();
-            await loadCourses();
-        }
-
-    } catch (error) {
-
-        console.error("Error joining course:", error);
-
-    }
-}
-
-=======
  
         if(res.ok){
  
@@ -144,7 +95,6 @@ window.joinCourse = async (courseId) => {
     }
 }
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 async function createOrEdit(){
  
     const dataCourse = {
@@ -441,15 +391,6 @@ function renderCards(data, index) {
     const card = document.createElement("div");
     card.className= "floating-card"
     card.id = `card_${data.course_id}`;
-<<<<<<< HEAD
-
-
-    const savedPos = JSON.parse(localStorage.getItem(`pos_${card.id}`));
-
-    let startX = 80 + (index * 60) + Math.random() * 40;
-    let startY = 80 + (index * 60) + Math.random() * 40;
-
-=======
  
  
     const savedPos = JSON.parse(localStorage.getItem(`pos_${card.id}`));
@@ -457,7 +398,6 @@ function renderCards(data, index) {
     let startX = 80 + (index * 60) + Math.random() * 40;
     let startY = 80 + (index * 60) + Math.random() * 40;
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     if(savedPos){
         startX = savedPos.x;
         startY = savedPos.y;
@@ -469,17 +409,10 @@ function renderCards(data, index) {
  
     card.style.left = startX + "px";
     card.style.top = startY + "px";
-<<<<<<< HEAD
-
-    const headerColor = data.is_mine ? "#1e3a5f" : "#1e3a2f";
-    const authorTag = data.is_mine ? "Mine" : (data.author_name || "Community");
-
-=======
  
     const headerColor = data.is_mine ? "#1e3a5f" : "#1e3a2f";
     const authorTag = data.is_mine ? "Mine" : (data.author_name || "Community");
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     card.innerHTML = `
         <div class="card-header-drag flex items-center gap-2 px-4 py-3 rounded-t-2xl cursor-grab" style="background: ${headerColor};">
             <i class="bi bi-mortarboard-fill" style="color:rgba(255,255,255,0.8); font-size:15px;"></i>
@@ -497,11 +430,7 @@ function renderCards(data, index) {
             </div>
         </div>
     `;
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     // Mouse
     card.addEventListener("dblclick", () => window.openPlayer(data));
     
@@ -512,11 +441,7 @@ function renderCards(data, index) {
         if(now - lastTap < 300) window.openPlayer(data);
         lastTap = now;
     });
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     document.body.appendChild(card);
     draggable(card)
  
@@ -527,19 +452,11 @@ function collision(item){
  
     const side1 = item.getBoundingClientRect();
     const others = document.querySelectorAll(".floating-card");
-<<<<<<< HEAD
-
-    for(let other of others){
-
-        if(other === item) continue
-
-=======
  
     for(let other of others){
  
         if(other === item) continue
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         const side2 = other.getBoundingClientRect();
         const collisionM = 10;
         const overlap = !(side1.right + collisionM < side2.left || side1.left - collisionM > side2.right || side1.bottom + collisionM < side2.top  || side1.top - collisionM > side2.bottom)
@@ -551,46 +468,17 @@ function collision(item){
     return false;
  
 }
-<<<<<<< HEAD
-
-function draggble(item){
-    const header = item.querySelector('.card-header-drag');
-    let mouseX, mouseY, initialX, initialY;
-    const margin = 24, bottomNavHeight = 75, iman = 40;
-
-=======
  
 function draggable(item){
     const header = item.querySelector('.card-header-drag');
     let mouseX, mouseY, initialX, initialY;
     const margin = 24, bottomNavHeight = 75, iman = 40;
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     function onMove(clientX, clientY) {
         let diffX = clientX - mouseX;
         let diffY = clientY - mouseY;
         mouseX = clientX;
         mouseY = clientY;
-<<<<<<< HEAD
-
-        let nT = item.offsetTop + diffY;
-        let nL = item.offsetLeft + diffX;
-        let maxBottom = window.innerHeight - item.offsetHeight - margin - bottomNavHeight;
-
-        nT = Math.max(margin, Math.min(nT, maxBottom));
-        nL = Math.max(margin, Math.min(nL, window.innerWidth - item.offsetWidth - margin));
-
-        item.style.top = nT + "px";
-        item.style.left = nL + "px";
-
-        if(collision(item)) item.classList.add("collision-warning");
-        else item.classList.remove("collision-warning");
-    }
-
-    function onEnd() {
-        item.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
-
-=======
  
         let nT = item.offsetTop + diffY;
         let nL = item.offsetLeft + diffX;
@@ -609,38 +497,20 @@ function draggable(item){
     function onEnd() {
         item.style.transition = 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)';
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         if(collision(item)){
             item.style.left = initialX + "px";
             item.style.top = initialY + "px";
             item.classList.remove("collision-warning");
         } else {
             item.classList.remove("collision-warning");
-<<<<<<< HEAD
-
-            let fT = item.offsetTop, fL = item.offsetLeft;
-            const maxBottom = window.innerHeight - item.offsetHeight - margin - bottomNavHeight;
-
-=======
  
             let fT = item.offsetTop, fL = item.offsetLeft;
             const maxBottom = window.innerHeight - item.offsetHeight - margin - bottomNavHeight;
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
             if(fT < margin + iman) fT = margin;
             if(fT > maxBottom - iman) fT = maxBottom;
             if(fL < margin + iman) fL = margin;
             if(fL > window.innerWidth - item.offsetWidth - margin - iman) fL = window.innerWidth - item.offsetWidth - margin;
-<<<<<<< HEAD
-
-            item.style.top = fT + "px";
-            item.style.left = fL + "px";
-
-            localStorage.setItem(`pos_${item.id}`, JSON.stringify({ x: fL, y: fT }));
-        }
-    }
-
-=======
  
             item.style.top = fT + "px";
             item.style.left = fL + "px";
@@ -649,7 +519,6 @@ function draggable(item){
         }
     }
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     // Mouse
     header.onmousedown = (e) => {
         e.preventDefault();
@@ -658,11 +527,7 @@ function draggable(item){
         mouseY = e.clientY;
         initialX = item.offsetLeft;
         initialY = item.offsetTop;
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         document.onmousemove = (e) => { e.preventDefault(); onMove(e.clientX, e.clientY); };
         document.onmouseup = () => {
             document.onmousemove = null;
@@ -670,11 +535,7 @@ function draggable(item){
             onEnd();
         };
     };
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     // Touch
     header.addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -685,33 +546,18 @@ function draggable(item){
         initialX = item.offsetLeft;
         initialY = item.offsetTop;
     }, { passive: false });
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     header.addEventListener('touchmove', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
         onMove(touch.clientX, touch.clientY);
     }, { passive: false });
-<<<<<<< HEAD
-
-    header.addEventListener('touchend', () => {
-        onEnd();
-    });
-}
-
-function workSpace(){
-    if(courseData || publicCourses.length > 0){
-=======
  
     header.addEventListener('touchend', () => { onEnd(); });
 };
  
 function workSpace(){
     if(courseData || enrolled.length > 0 || publicCourses.length > 0){
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         workS.classList.add("dashboard-mode")
     }else{
         workS.classList.remove("dashboard-mode")
@@ -851,67 +697,6 @@ async function saveScore({score, gameId, courseId}) {
     }
     
 };
-<<<<<<< HEAD
-
-window.openPlayer = (data) => {
-
-    currentCourse = data
-    
-    document.querySelectorAll(".floating-card").forEach(c => c.style.display="none");
-
-    title.innerText = data.title;
-    desc.innerText = data.description || "...";
-    cover.src = data.cover_photo || "";
-
-    bad.innerHTML = data.is_mine ? `<span class="bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full">MI PROYECTO</span>` : `<span class="bg-slate-500 text-white text-[10px] font-bold px-3 py-1 rounded-full">COMUNIDAD</span>`;
-    const mod = document.getElementById("player-modules"); mod.innerHTML = "";
-
-    console.log({
-        title: document.getElementById("player-title"),
-        desc: document.getElementById("player-desc"),
-        cover: document.getElementById("player-cover"),
-        bad: document.getElementById("player-badges"),
-        mod: document.getElementById("player-modules"),
-        container: document.getElementById("player-container"),
-        closeBtn: document.getElementById("btn-close-player")
-    });
-
-    if(data.modules?.length > 0) {
-        data.modules.forEach((m, i) => mod.innerHTML += `<div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white transition-colors hover:bg-white/10 flex gap-3 align-items-center"><div class="bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs shrink-0">${i+1}</div><h6 class="font-bold m-0 text-sm">${m.title || "Módulo "+(i+1)}</h6></div>`);
-    } else mod.innerHTML = "<p class='text-white/50 text-xs'>No hay lecciones.</p>";
-
-    container.classList.add("visible");
-    closeBtn.style.display="block";
-
-    initMiniGame();
-
-};
-
-window.closePlayer = () => { 
-    document.getElementById("game-iframe").src = "about:blank"; 
-    document.getElementById("player-container").classList.remove("visible"); 
-    closeBtn.style.display = "none"
-    document.querySelectorAll(".floating-card").forEach(c => c.style.display=""); 
-};
-
-closeBtn.addEventListener("click", closePlayer);
-
-window.initMiniGame = () => {
-    const iframe = document.getElementById("game-iframe");
-    const status = document.getElementById("game-status");
-    if (iframe) {
-        status.innerText = "Recargando actividad...";
-
-        iframe.src = `../../games/${currentCourse.game_src}/index.html`;
-        setTimeout(() => { status.innerText = ""; }, 1000);
-    }
-};
-
-window.searchCourse = (query) => {
-
-    const enrolledIds = enrolled.map(c => c.course_id);
-
-=======
  
 window.openPlayer = (data) => {
  
@@ -971,26 +756,12 @@ window.searchCourse = (query) => {
  
     const enrolledIds = enrolled.map(c => c.course_id);
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     const results = publicCourses.filter(c =>
         (c.title.toLowerCase().includes(query.toLowerCase()) ||
         c.description?.toLowerCase().includes(query.toLowerCase())) &&
         !enrolledIds.includes(c.course_id) &&
         c.course_id !== courseData?.course_id  
     );
-<<<<<<< HEAD
-
-    renderResults(results);
-}
-
-function renderResults(results){
-
-    const existing = document.getElementById("search-dropdown");
-    if(existing) existing.remove();
-
-    if(results.length === 0) return;
-
-=======
  
     renderResults(results);
 }
@@ -1002,7 +773,6 @@ function renderResults(results){
  
     if(results.length === 0) return;
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     const dropdown = document.createElement("div");
     dropdown.id = "search-dropdown";
     dropdown.className = `
@@ -1011,11 +781,7 @@ function renderResults(results){
         rounded-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)] 
         overflow-hidden z-[9000] max-h-[400px] overflow-y-auto
     `;
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     dropdown.innerHTML = results.map(c => `
         <div class="flex gap-3 p-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0">
             <img 
@@ -1039,17 +805,6 @@ function renderResults(results){
             </div>
         </div>
     `).join('');
-<<<<<<< HEAD
-
-    const searchWrapper = document.querySelector(".search");
-    searchWrapper.style.position = "relative";
-
-    dropdown.style.right = "0";
-    dropdown.style.left = "auto";
-
-    searchWrapper.appendChild(dropdown);
-
-=======
  
     const searchWrapper = document.querySelector(".search");
     searchWrapper.style.position = "relative";
@@ -1059,7 +814,6 @@ function renderResults(results){
  
     searchWrapper.appendChild(dropdown);
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
     setTimeout(() => {
         document.addEventListener("click", (e) => {
             if(!dropdown.contains(e.target)){
@@ -1067,9 +821,5 @@ function renderResults(results){
             }
         }, { once: true });
     }, 0);
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 }
