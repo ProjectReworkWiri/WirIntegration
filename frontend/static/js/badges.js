@@ -1,3 +1,9 @@
+function fixPhotoUrl(photo) {
+    if (!photo) return null;
+    if (photo.startsWith("http://") || photo.startsWith("https://")) return photo;
+    return photo;
+}
+
 async function renderBadges(userId) {
     if (!userId) {
         console.error("renderBadges: userId its not defined");
