@@ -32,16 +32,20 @@ export const findOrCreateGoogleUser = async (profile) => {
 
     // 3. Create profile linked to the user
     await pool.query(
-      `INSERT INTO profile(id) VALUES($1)`,
+      `INSERT INTO profile(id) VALUES($1)
+      ON CONFLICT (id) DO NOTHING`,
       [user.id]
     );
 
     // 4. Initialize user points and streak values
     await pool.query(
-      `INSERT INTO user_points(user_id,current_balance,current_streak,best_streak)
-       VALUES($1,0,0,0)`,
-      [user.id]
+        `INSERT INTO user_points(user_id, current_balance, current_streak, best_streak)
+        VALUES($1, 0, 0, 0)
+        ON CONFLICT (user_id) DO NOTHING`,
+        [user.id]
     );
+
+    return user
 
   } else {
 
