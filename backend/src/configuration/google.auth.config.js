@@ -42,7 +42,7 @@ passport.deserializeUser(async (id, done) => {
       [id]
     );
 
-    if (result.rows.length === 0) {
+    if (user.rows.length === 0) {
       return done(null, false); 
     }
 
