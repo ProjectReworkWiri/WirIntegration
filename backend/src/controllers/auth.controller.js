@@ -53,7 +53,6 @@ const login = async (req, res) => {
             res.cookie("user_session", result.userFound.id, {
                 secure: true, 
                 sameSite: "none",
-                sameSite: "lax",
                 path: "/",
                 maxAge: 24 * 60 * 60 * 1000
             });
