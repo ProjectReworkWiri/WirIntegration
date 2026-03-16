@@ -5,5 +5,10 @@
     "liveServer.settings.fullReload": false,
     "liveServer.settings.cors": false,
     "github.copilot.chat.summarizeAgentConversationHistory.enabled": true,
+<<<<<<< HEAD
     "liveServer.settings.port": 5500
+=======
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.host": "127.0.0.1"
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 }

@@ -44,9 +44,22 @@ export const placeHolder = document.getElementById("bg-Img-Placeholder")
 //Player Modal
 
 export const title = document.getElementById("player-title");
+<<<<<<< HEAD
 export const desc = document.getElementById("player-desc");
+=======
+
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 export const cover = document.getElementById("player-cover");
 export const bad = document.getElementById("player-badges");
 export const mod = document.getElementById("player-modules");
 export const container = document.getElementById("player-container");
 export const closeBtn = document.getElementById("btn-Close");
+<<<<<<< HEAD
+=======
+
+//Iframe
+
+export const iframe = document.getElementById("game-iframe");
+export const status = document.getElementById("game-status");
+
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c

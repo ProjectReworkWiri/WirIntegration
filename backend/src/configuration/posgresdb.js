@@ -5,7 +5,11 @@ const { Pool } = pkg;
 
 //Server connection
 
+<<<<<<< HEAD
 /* const pool = new Pool({
+=======
+const pool = new Pool({
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
@@ -14,12 +18,17 @@ const { Pool } = pkg;
 
 pool.on("connect", (client) => {
   client.query(`SET search_path TO app_zenith, public`)
+<<<<<<< HEAD
 }); */
+=======
+});
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 
 //----------------------------------------//
 
 //Local connection with .env
 
+<<<<<<< HEAD
 const pool = new Pool({ 
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -29,6 +38,17 @@ const pool = new Pool({
   options: `-c search_path=${process.env.DB_SCHEMA || 'public'},public`,
   connectionTimeoutMillis: 15000
 });
+=======
+/* const pool = new Pool({ 
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PWD,
+  port: process.env.DB_PORT,
+  options: `-c search_path=${process. env.DB_SCHEMA || 'public'},public`,
+  connectionTimeoutMillis: 15000
+}); */
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 
 export const connectPg = async () => {
 

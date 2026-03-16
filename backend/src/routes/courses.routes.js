@@ -18,6 +18,12 @@ courseRoutes.get("/", isLoged, coursesControllers.getCourses);
 
 courseRoutes.post("/", isLoged, coursesControllers.postCourse);
 
+<<<<<<< HEAD
+=======
+courseRoutes.get("/sessions", isLoged, coursesControllers.getSessions);
+
+
+>>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
 courseRoutes.put("/:id", isLoged, coursesControllers.putCourse);
 
 courseRoutes.delete("/:id", isLoged, coursesControllers.deleteCourse);
