@@ -961,7 +961,7 @@ window.initMiniGame = () => {
         status.innerText = "Recargando actividad...";
  
         const gameSrc = currentCourse.game_src || currentCourse.game_id;
-        iframe.src = `../../games/${gameSrc}/index.html`;
+        iframe.src = `../../games/${gameSrc}`;
         setTimeout(() => { status.innerText = ""; }, 1000);
     }
  
