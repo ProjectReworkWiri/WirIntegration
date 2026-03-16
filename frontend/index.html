@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50%       { transform: translateY(-12px) rotate(2deg); }
+        }
+        .splash-wrap {
+            min-height: 100vh;
+            background: radial-gradient(circle at 0% 90%, #3a4a8d 10%, #1a1e3b 50%, #0d0f1f 80%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .card {
+            animation: fadeUp 0.6s ease forwards;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(6,249,249,0.2);
+            border-radius: 20px;
+            padding: 48px 56px;
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
+            z-index: 1;
+        }
+        .logo { color: #06f9f9; font-size: 38px; font-weight: 700; letter-spacing: 8px; font-family: sans-serif; }
+        .sub { color: rgba(255,255,255,0.4); font-size: 13px; letter-spacing: 2px; font-family: sans-serif; }
+        .spinner {
+            width: 36px; height: 36px;
+            border: 2.5px solid rgba(6,249,249,0.15);
+            border-top-color: #06f9f9;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .dot-line { display: flex; gap: 6px; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(6,249,249,0.3); }
+        .dot:nth-child(2) { background: rgba(6,249,249,0.6); }
+        .dot:nth-child(3) { background: rgba(6,249,249,0.9); }
+    </style>
+</head>
+<body>
+    <div class="splash-wrap">
+
+        <div class="zorra hidden md:block" style="animation: float 4s ease-in-out infinite; top: auto; bottom: 30px; right: 30px; left: auto; transform: none;">
+            <img src="./static/assets/img/zorrita 2.svg" alt="zenith fox">
+        </div>
+
+        <div class="card">
+            <div class="logo">ZENITH</div>
+            <div class="dot-line">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="spinner"></div>
+            <div class="sub">Cargando...</div>
+        </div>
+
+    </div>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = "./templates/auth/index.html";
+        }, 800);
+    </script>
+</body>
+</html>
