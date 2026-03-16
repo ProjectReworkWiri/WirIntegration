@@ -110,13 +110,7 @@ export const coursesServices = {
     },
 
     joinCourse: async (userId, courseId) => {
-<<<<<<< HEAD
-
         const client = await pool.connect();
-
-=======
-        const client = await pool.connect();
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         try {
             await client.query("BEGIN");
             const res = await client.query("SELECT join_course($1, $2) as progress", [userId, courseId]);
