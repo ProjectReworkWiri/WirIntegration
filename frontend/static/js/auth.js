@@ -9,11 +9,7 @@ import {
     confirmPassword
 } from "./elements.js";
  
-<<<<<<< HEAD
-const port = "http://127.0.0.1:4000"
-=======
 const port = "https://wirintegration-production.up.railway.app"
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
  
 document.addEventListener("DOMContentLoaded", async () => {
  
@@ -29,11 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.info("User already logged in → redirect dashboard");
  
             window.location.href = "../../templates/dashboard/dashboard.html";
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
         }
  
     } catch (error) {
@@ -103,7 +94,7 @@ const googleBtn = document.getElementById("googleLoginBtn");
  
 if (googleBtn) {
   googleBtn.addEventListener("click", () => {
-    window.location.href = "http://127.0.0.1:4000/auth/google"; // ← corregido
+    window.location.href = `${port}/auth/google`; // ← corregido
   });
 }
  
@@ -148,11 +139,7 @@ if (loginForm) {
                 }, 1500);
  
             } else {
-<<<<<<< HEAD
-                displayMessage(data.message || "Invalid credentials.", "error");
-=======
                 displayMessage(data.error || "Login failed.", "error");
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
             }
  
         } catch (error) {
@@ -196,27 +183,16 @@ if (registerForm) {
             const data = await response.json();
  
             if (response.ok) {
-<<<<<<< HEAD
-                displayMessage("User registered successfully!", "success");
-=======
                 const successMsg = data.message || "¡User register! Please, check your email for verificate yout account";
                 displayMessage(successMsg, "success");
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
                 registerForm.reset();
  
                 setTimeout(() => {
                     window.location.href = "../../templates/auth/index.html";
-<<<<<<< HEAD
-                }, 1500);
- 
-            } else {
-                displayMessage(data.message || "Registration failed.", "error");
-=======
                 }, 3500);
  
             } else {
                 displayMessage(data.error || data.message || "Registration failed.", "error");
->>>>>>> 6ce25b36f8885c6b442e86ef96400980d33a1d8c
             }
  
         } catch (error) {
