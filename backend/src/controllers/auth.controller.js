@@ -1,6 +1,7 @@
 import * as authService from '../services/auth.service.js';
 import { notifyLogin, notifyEmailConfirmation } from '../services/n8n.service.js';
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://127.0.0.1:5500";
+const isProduction = process.env.NODE_ENV === "production";
 
 const register = async (req, res) => {
     console.log("Datos recibidos en register:", req.body);
@@ -51,8 +52,9 @@ const login = async (req, res) => {
 
         if (result.match) {
             res.cookie("user_session", result.userFound.id, {
-                secure: true, 
-                sameSite: "none",
+                secure: isProduction, 
+                sameSite: isProduction ? "none": "lax",
+                httpOnly: true,
                 path: "/",
                 maxAge: 24 * 60 * 60 * 1000
             });

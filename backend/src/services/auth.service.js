@@ -13,6 +13,7 @@ const registerUser = async (full_name, email, password ) => {
     const client = await pool.connect();
 
     try {
+        
         await client.query('BEGIN');
 
         const userQuery = "INSERT INTO users (full_name, email, password, verification_token, is_verified) VALUES ($1, $2, $3, $4, false) RETURNING id";
